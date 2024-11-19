@@ -1,4 +1,6 @@
-class GerenciadorContatos {
+const Contato = require('./Contato')
+
+class GerenciadorContatos extends Contato {
     constructor(){
         this.listaContatos = []
     }

@@ -1,37 +1,41 @@
-const readline = require('readline')
+const ReadInput = require('./models/ReadInput')
 const Contato = require('./models/Contato')
 const GerenciadorContatos = require('./models/GerenciadorContatos')
 
-const gerContatos = new GerenciadorContatos()
+const main = async () => {
+    const gerContatos = new GerenciadorContatos()
+    const readLine = new ReadInput()
 
-const entrada = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-})
+    const adicionarContato = async () => {
+        const contato = new Contato(await readLine.read('Nome: '), await readLine.read('Telefone: '), await readLine.read('Email: '))
+        await readLine.close()
+        gerContatos.adicionarContato(contato)
+    }
 
-const adicionarContato = () => {
-    entrada.question('Nome: ', (nome) => {
-        entrada.question('Telefone: ', (telefone) => {
-            entrada.question('Email: ', (email) => {
-                const contato = new Contato(nome, telefone, email)
-                gerContatos.adicionarContato(contato)
-                entrada.close()
-            })
-        })
-    })
+    const listarContatos = () => {
+        console.log('LISTA DE CONTATOS')
+        gerContatos.listarContatos()
+    }
+
+    do{
+        let opcao = readLine.read('SELECIONE UMA OPÇÃO:\n1 - Adicionar contato\n2 - Remover contato\n3 - Buscar contato\n4 - Listar contatos\n0 - Sair')
+        switch(opcao) {
+            case '1':
+                await adicionarContato()
+                break
+            case '2':
+
+                break
+            case '3':
+
+                break
+            case '4':
+                listarContatos()
+                break
+            case '0':
+                break
+            default:
+                console.log('OPÇÃO INVÁLIDA')
+        }
+    } while(opcao != 0)
 }
-
-const listarContatos = () => {
-    console.log('LISTA DE CONTATOS')
-    gerContatos.listarContatos()
-}
-
-do{
-    entrada.question('SELECIONE UMA OPÇÃO:\n1 - Adicionar contato\n2 - Remover contato\n3 - Buscar contato\n4 - Listar contatos', (opcao) => {
-        
-    })
-    console.log()
-
-} while()
-adicionarContato()
-listarContatos()
