@@ -18,10 +18,22 @@ class GerenciadorContatos {
         }
     }
 
-    buscarContato(nome) {
-        const index = this.listaContatos.findIndex((contato) => contato.nome == nome)
+    buscarContato(valor, op) {
+        let index = null
+        switch(op){
+            case 1:
+                index = this.listaContatos.findIndex((contato) => contato.nome == valor)
+                break
+            case 2:
+                index = this.listaContatos.findIndex((contato) => contato.email == valor)
+                break
+            case 3:
+                index = this.listaContatos.findIndex((contato) => contato.telefone == valor )
+                break
+        }
+
         if(index == -1){
-            console.log(`\nContato com o nome ${nome} não encontrado em sua lista de contatos`)
+            console.log(`\nContato com o valor ${valor} não encontrado em sua lista de contatos`)
         }
         else {
             let contato = this.listaContatos[index]

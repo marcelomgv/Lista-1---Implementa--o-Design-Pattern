@@ -21,8 +21,27 @@ class Facade{
     }
 
     async buscarContato(){
-        let nome = await this.readLine.read('Informe o nome do contato: ')
-        this.gerContatos.buscarContato(nome)
+        console.log('\n1 - Buscar por nome \n2 - Buscar por email \n3 - Buscar por numero')
+        let op = await this.readLine.read('\nOpcao: ')
+        switch(op){
+            case '1':
+                let nome = await this.readLine.read('Informe o nome do contato: ')
+                this.gerContatos.buscarContato(nome, 1)
+                break
+            case '2':
+                let email = await this.readLine.read('Informe o email do contato: ')
+                this.gerContatos.buscarContato(email, 2)
+                break
+            case '3':
+                let numero = await this.readLine.read('Informe o telefone do contato: ')
+                this.gerContatos.buscarContato(numero,3)
+                break
+            default:
+                console.log('OPÇÃO INVÁLIDA')
+                await this.readLine.esperar()
+        }
+        
+        
     }
 
     async listarContatos(){
