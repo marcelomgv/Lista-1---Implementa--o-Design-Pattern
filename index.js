@@ -13,8 +13,13 @@ const main = async () => {
     }
 
     const removerContato = async () => {
-        let nome = await readLine.read('\nInforme o nome do contato a ser excluido: ')
+        let nome = await readLine.read('Informe o nome do contato a ser excluido: ')
         gerContatos.removerContato(nome)
+    }
+
+    const buscarContato = async () => {
+        let nome = await readLine.read('Informe o nome do contato: ')
+        gerContatos.buscarContato(nome)
     }
 
     const listarContatos = () => {
@@ -31,11 +36,14 @@ const main = async () => {
                 await adicionarContato()
                 break
             case '2':
+                console.log('\nREMOVER CONTATO')
                 await removerContato()
                 await readLine.esperar()
                 break
             case '3':
-
+                console.log('\nBUSCAR CONTATO')
+                await buscarContato()
+                await readLine.esperar()
                 break
             case '4':
                 console.log('\nLISTA DE CONTATOS')
@@ -46,6 +54,7 @@ const main = async () => {
                 break
             default:
                 console.log('OPÇÃO INVÁLIDA')
+                await readLine.esperar()
         }
     } while(opcao != '0');
 
