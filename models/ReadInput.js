@@ -17,7 +17,15 @@ class ReadInput {
     }
 
     close() {
-        entrada.close()
+        this.entrada.close()
+    }
+
+    esperar() {
+        return new Promise(resolve => {
+            this.entrada.question('Pressione Enter para continuar...', () => {
+                resolve()
+            });
+        });
     }
 }
 

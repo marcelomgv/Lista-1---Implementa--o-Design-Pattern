@@ -1,6 +1,4 @@
-const Contato = require('./Contato')
-
-class GerenciadorContatos extends Contato {
+class GerenciadorContatos {
     constructor(){
         this.listaContatos = []
     }
@@ -15,7 +13,7 @@ class GerenciadorContatos extends Contato {
 
     listarContatos() {
         if(this.listaContatos.length == 0) {
-            console.log('Nenhum contato listado')
+            console.log('Nenhum contato listado\n')
         }
         else {
             for (let contato of this.listaContatos){

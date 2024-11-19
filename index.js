@@ -5,11 +5,15 @@ const GerenciadorContatos = require('./models/GerenciadorContatos')
 const main = async () => {
     const gerContatos = new GerenciadorContatos()
     const readLine = new ReadInput()
+    let opcao = ''
 
     const adicionarContato = async () => {
         const contato = new Contato(await readLine.read('Nome: '), await readLine.read('Telefone: '), await readLine.read('Email: '))
-        await readLine.close()
         gerContatos.adicionarContato(contato)
+    }
+
+    const removerContato = () => {
+        
     }
 
     const listarContatos = () => {
@@ -18,7 +22,9 @@ const main = async () => {
     }
 
     do{
-        let opcao = readLine.read('SELECIONE UMA OPÇÃO:\n1 - Adicionar contato\n2 - Remover contato\n3 - Buscar contato\n4 - Listar contatos\n0 - Sair')
+        console.log('\n\nSELECIONE UMA OPÇÃO:\n1 - Adicionar contato\n2 - Remover contato\n3 - Buscar contato\n4 - Listar contatos\n0 - Sair')
+        opcao = await readLine.read('\nOpção: ')
+
         switch(opcao) {
             case '1':
                 await adicionarContato()
@@ -31,11 +37,16 @@ const main = async () => {
                 break
             case '4':
                 listarContatos()
+                await readLine.esperar()
                 break
             case '0':
                 break
             default:
                 console.log('OPÇÃO INVÁLIDA')
         }
-    } while(opcao != 0)
+    } while(opcao != '0');
+
+    readLine.close()
 }
+
+main()
