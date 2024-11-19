@@ -22,7 +22,7 @@ class ReadInput {
 
     esperar() {
         return new Promise(resolve => {
-            this.entrada.question('Pressione Enter para continuar...', () => {
+            this.entrada.question('\nPressione Enter para continuar...', () => {
                 resolve()
             });
         });

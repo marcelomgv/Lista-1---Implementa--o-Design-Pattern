@@ -12,12 +12,12 @@ const main = async () => {
         gerContatos.adicionarContato(contato)
     }
 
-    const removerContato = () => {
-        
+    const removerContato = async () => {
+        let nome = await readLine.read('\nInforme o nome do contato a ser excluido: ')
+        gerContatos.removerContato(nome)
     }
 
     const listarContatos = () => {
-        console.log('LISTA DE CONTATOS')
         gerContatos.listarContatos()
     }
 
@@ -27,15 +27,18 @@ const main = async () => {
 
         switch(opcao) {
             case '1':
+                console.log('\nNOVO CONTATO')
                 await adicionarContato()
                 break
             case '2':
-
+                await removerContato()
+                await readLine.esperar()
                 break
             case '3':
 
                 break
             case '4':
+                console.log('\nLISTA DE CONTATOS')
                 listarContatos()
                 await readLine.esperar()
                 break

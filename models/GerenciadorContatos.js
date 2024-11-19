@@ -7,13 +7,20 @@ class GerenciadorContatos {
         this.listaContatos.push(contato)
     }
 
-    removerContato(contato) {
-        this.listaContatos.splice(this.listaContatos.indexOf(contato), 1)
+    removerContato(nome) {
+        const index = this.listaContatos.findIndex((contato) => contato.nome == nome)
+        if(index == -1){
+            console.log(`\nContato com o nome ${nome} não encontrado em sua lista de contatos`)
+        }
+        else {
+            this.listaContatos.splice(index, 1)
+            console.log(`\nContato com o nome ${nome} excluido com sucesso`)
+        }
     }
 
     listarContatos() {
         if(this.listaContatos.length == 0) {
-            console.log('Nenhum contato listado\n')
+            console.log('\nNenhum contato listado')
         }
         else {
             for (let contato of this.listaContatos){
