@@ -3,7 +3,6 @@ const Contato = require('./Contato')
 const GerenciadorContatos = require('./GerenciadorContatos')
 
 class Facade{
-
     constructor() {
         this.gerContatos = new GerenciadorContatos()
         this.readLine = new ReadInput()
@@ -40,8 +39,6 @@ class Facade{
                 console.log('OPÇÃO INVÁLIDA')
                 await this.readLine.esperar()
         }
-        
-        
     }
 
     async listarContatos(){
